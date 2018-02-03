@@ -1,0 +1,39 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="pm_home.zul"></include>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<hlayout>
+<div align="left" width="50%">
+	<grid>
+		<columns>
+			<column>List of Developers</column>
+		</columns>
+		<rows>
+			<template name="model">
+				<row>
+					<label value=""></label>
+				</row>
+			</template>
+		</rows>
+	</grid>
+</div>
+<div align="center" width="50%">
+	<grid>
+		<columns>
+			<column>List of Testers</column>
+		</columns>
+		<rows>
+			<template name="model">
+				<row>
+					<label value=""></label>
+				</row>
+			</template>
+		</rows>
+	</grid>
+</div>
+</hlayout>
+</zk>

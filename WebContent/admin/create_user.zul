@@ -1,0 +1,70 @@
+<?page title="Create New User" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="admin_home.zul"/>
+
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<div id="form" align="center">
+<window title="Create New User" width="400px" apply="admin.JdbcComposer">
+<grid>
+	<rows>
+		<row>
+			<label value="Name" width="150px"></label>
+			<textbox id="name"></textbox>
+		</row>
+		<row>
+			Username:
+			<textbox id="unm" constraint="no empty:Username cannot be empty."></textbox>
+		</row>
+		<row>
+			Password:
+			<textbox id="pwd" type="password" constraint="no empty:Password cannot be empty"></textbox>
+		</row>
+		<row>
+			Re-type Password:
+			<textbox id="cpwd" type="password" constraint="no empty:Please re-type password"></textbox>
+		</row>
+		<row>
+			Designation:
+			<combobox id="desig" autodrop="true" constraint="no empty:Select Designation">
+				<comboitem label="Developer" value="Developer"/>
+				<comboitem label="Project Manager" value="Project Manager"/>
+				<comboitem label="Tester" value="Tester"/>
+			</combobox>
+		</row>
+		<row>
+			Email-id:
+			<textbox id="email" constraint="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ :Enter a valid Email-id"></textbox>
+		</row>
+		<row>
+			Project Manager:
+			<textbox id="pm"></textbox>
+		</row>
+		<row>
+			Department:
+			<textbox id="dept"></textbox>
+		</row>
+		<row>
+			<label></label>
+			<button height="30px" label="Create New User" onClick="pwdMatch()"></button>
+		</row>
+	</rows>
+</grid>
+<zscript><![CDATA[
+                  
+          void pwdMatch()
+          {
+            	if(!(pwd.getValue().equals(cpwd.getValue())))
+            	{
+            		alert("Passwords do not match");
+            	}
+          };     	  
+                	  
+                  ]]>
+</zscript>
+</window>
+</div>
+
+</zk>

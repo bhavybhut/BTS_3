@@ -1,0 +1,49 @@
+<?page title="Bug Report" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="admin_home.zul"/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('tester.FilterViewModel')">
+	<grid model="@load(vm.bugStatus)">
+		<auxhead>
+			<auxheader colspan="3">Bug Report</auxheader>
+		</auxhead>
+		<auxhead>
+			<auxheader>
+			</auxheader>
+			<auxheader>
+				<image src="/images/funnel.png"></image>
+				<textbox instant="true" value="@bind(vm.bugFilter.pname)" onChange="@command('changeFilter')" width="100px"></textbox>
+			</auxheader>
+			<auxheader>
+			</auxheader>
+			<auxheader>
+				<image src="/images/funnel.png"></image>
+				<textbox instant="true" value="@bind(vm.bugFilter.priority)" onChange="@command('changeFilter')" width="100px"></textbox>
+			</auxheader>
+		</auxhead>
+		<columns>
+			<column>Bug Id</column>
+			<column>Project Name</column>
+			<column>Bug Summary</column>
+			<column>Priority</column>
+			<column>Status</column>
+		</columns>
+		<template name="model">
+			<row>
+				<label value="@load(each.bug.b_id)"></label>
+				<label value="@load(each.bug.pname)"></label>
+				<label value="@load(each.bug.summary)"></label>
+				<label value="@load(each.bug.priority)"></label>
+				<label value="@load(each.bug.status)"></label>
+			</row>
+		</template>
+		 <foot>
+	            <footer span="6" class="footer_right" label="@load(vm.footer)" />
+	        </foot>
+	</grid>
+</div>
+</zk>

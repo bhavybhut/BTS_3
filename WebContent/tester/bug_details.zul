@@ -1,0 +1,97 @@
+<?page title="Bug Details" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="tester_home.zul"></include>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+
+
+
+<window apply="tester.BugDetails">
+<zscript><![CDATA[
+                  import tester.Bug;
+                  import tester.DbConnectivity;
+                  void close(){
+                	  Messagebox.show("Are you sure want to Close Bug?","Question",Messagebox.YES|Messagebox.NO,Messagebox.QUESTION,
+                			  new org.zkoss.zk.ui.event.EventListener(){
+                		  
+                		  		public void onEvent(Event event) throws Exception{
+                		  			if(Messagebox.ON_YES.equals(event.getName())){
+                		  				int id = Integer.parseInt(b_id.getValue());
+                	                	Bug bug = new Bug(id,pname.getValue(),summary.getValue(),desc.getValue());
+                	                	DbConnectivity closeStatus = new DbConnectivity();
+                	                	closeStatus.closeBug(bug);
+                		  			}
+                		  			else if(Messagebox.ON_NO.equals(event.getName())){}
+                		  		}
+                	  });
+                	  
+                  }
+]]>
+</zscript>
+<hlayout>
+<div width="70%">
+	<grid>
+		<rows>
+			<row>
+				Bug Id:
+				<label id="b_id"></label>
+			</row>
+			<row>
+				Bug Summary:
+				<label id="summary"></label>
+			</row>
+			<row>
+				Bug Description:
+				<label id="desc"></label>
+			</row>
+			<row>
+				File:
+				<image id="img"></image>
+			</row>
+			<row>
+				<button label="Open" href="create_bug.zul"></button>
+				<button label="Close" onClick="close()"></button>
+			</row>
+		</rows>
+	</grid>
+</div>
+<vlayout>
+<div width="30%" height="100px">
+		<grid>
+			<rows>
+				<row>
+					Assigned To:
+				</row>
+				<row>
+					<label value=""></label>
+				</row>
+			</rows>
+		</grid>
+</div>
+<div width="30%">
+		<grid>
+			<rows>
+					<row>
+						Project Name:
+					</row>
+					<row>
+						<label id="pname"></label>
+					</row>
+					<row></row>
+					<row></row>
+					<row>
+						Project Manager:
+					</row>
+					<row>
+						<label value=""></label>
+					</row>
+			</rows>
+		</grid>
+</div>
+</vlayout>
+</hlayout>
+</window>
+</zk>

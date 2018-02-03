@@ -1,0 +1,53 @@
+<?page title="Profile" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="dev_home.zul"/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<hlayout>
+<div id="sidebar" width="200px">
+	<vlayout>
+	<html>
+		<strong>Pooja!</strong>
+	</html>
+	<separator/>
+	<separator/>
+	<a href="change_pwd.zul">Change Password</a>
+	</vlayout>
+</div>
+
+<div id="form" align="center" width="1000px">
+<window title="Edit Profile" width="400px">
+<grid>
+	<rows>
+		<row>
+			<label value="Username" width="150px"></label>
+			<textbox id="unm" value="pooja"></textbox>
+		</row>
+		<row>
+			Name:
+			<textbox id="name" value="Pooja"></textbox>
+		</row>
+		<row>
+			Email-id:
+			<textbox id="email" value="pooja@bts.com"></textbox>
+		</row>
+		<row>
+			Security Question:
+			<textbox id="pm" value="What is your pet name?"></textbox>
+		</row>
+		<row>
+			Security Answer:
+			<textbox id="dept" value="prince"></textbox>
+		</row>
+		<row>
+			<label></label>
+			<button height="30px" label="Submit"></button>
+		</row>
+	</rows>
+</grid>
+</window>
+</div>
+</hlayout>
+</zk>

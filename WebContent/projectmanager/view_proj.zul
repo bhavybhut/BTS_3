@@ -1,0 +1,49 @@
+<?page title="View Projects" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="pm_home.zul"/>
+<separator />
+	<separator />
+	<separator />
+	<separator />
+	<separator />
+	<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('ProjectManager.FilterViewModel')">
+		<grid model="@load(vm.projectStatus)">
+			<auxhead>
+				<auxheader colspan="4">Project List</auxheader>
+			</auxhead>
+			<auxhead>
+				<auxheader colspan="1">
+					<image src="/images/funnel.png" />
+			        <textbox instant="true" width="100px"
+			        value="@bind(vm.projectFilter.name)" onChange="@command('changeFilter')"/>
+				</auxheader>
+			</auxhead>
+			<columns>
+				<column>Project Name</column>
+				<column>Start Date</column>
+				<column>End Date</column>
+				<column>Edit Project</column>
+				<column>Delete Project</column>
+			</columns>
+			<template name="model">
+				<row>
+					<label value="@load(each.project.name)" onClick="move()"></label>
+					<zscript><![CDATA[
+					                  void move()
+					                  {
+					                       	 Executions.sendRedirect("proj_detail.zul");  
+					                  }
+					]]>
+					</zscript>
+					<label value="@load(each.project.stdate)"></label>
+					<label value="@load(each.project.edate)"></label>
+					<button image="/images/pencil.png" onClick="@command('changeEditableStatus',projectStatus=each)"></button>
+					<button image="/images/trash.png" onClick="@command('delete',projectStatus=each)"/>
+				</row>
+			</template>
+			 <foot>
+	            <footer span="6" class="footer_right" label="@load(vm.footer)" />
+	        </foot>
+		</grid>
+	</div>
+</zk>

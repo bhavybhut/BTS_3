@@ -1,0 +1,95 @@
+<?page title="Create Bug" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="tester_home.zul"/>
+<div align="center" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('ProjectManager.FilterViewModel')">
+<window title="Create a new Bug" width="1000px" apply="tester.DbConnectivity">
+	<grid>
+		<rows>
+			<row>
+				Select Project:
+				<combobox width="150px" id="proj" autodrop="true" model="@load(vm.projectModel)" constraint="no empty:Please Select Project">
+					<template name="model">
+						<comboitem label="@load(each.name)" value="@load(each.name)"></comboitem>
+					</template>
+				</combobox>
+			</row>
+			<row>
+				Priority:
+				<combobox width="150px" id="priority" constraint="no empty:Please select Priority">
+					<comboitem label="Critical" value="Critical"></comboitem>
+					<comboitem label="High" value="High"></comboitem>
+					<comboitem label="Normal" value="Normal"></comboitem>
+					<comboitem label="Low" value="Low"></comboitem>
+				</combobox>
+			</row>
+			<row>
+				Summary:
+				<textbox width="145px" id="summary" constraint="no empty:Please write summary of bug"></textbox>
+			</row>
+			<row>
+				Description:
+				<textbox width="145px" id="description" rows="3" constraint="no empty:Describe bug in brief"></textbox>
+			</row>
+			<row>
+				<label value="Upload File" id="lblUpload"></label>
+				<textbox id="imgName"></textbox>
+				<button label="Upload" id="btnUpload">
+		        <attribute name="onClick">
+		        Fileupload.get(new org.zkoss.zk.ui.event.EventListener(){
+		        
+		       
+		        public void onEvent(UploadEvent event) {
+		        	org.zkoss.util.media.Media media = event.getMedia();
+		            if (media instanceof org.zkoss.image.Image){
+		            	lblFile.setVisible(true);
+		            	img.setVisible(true);
+		            	btnRemove.setVisible(true);
+		                img.setContent(event.media);
+		                byte[] image = media.getByteData();
+		                tester.DbConnectivity con = new tester.DbConnectivity();
+		                con.storeBytes(image);
+		                imgName.setValue(image.toString());
+		                lblUpload.setVisible(false);
+		                imgName.setVisible(false);
+		                btnUpload.setVisible(false);
+		            }
+		            else if (media != null)
+		                Messagebox.show("Not an image: "+media, "Error",
+		                Messagebox.OK, Messagebox.ERROR);
+		                }
+		            });
+		        </attribute>
+		    </button>
+		    </row>
+		    <row>
+		    	<label id="lblFile" value="File" visible="false"></label>
+				<image id="img" visible="false"/>
+				<button id="btnRemove" label="Remove Image" visible="false">
+				<attribute name="onClick">{
+					lblUpload.setVisible(true);
+					imgName.setVisible(true);
+					imgName.setValue("");
+					btnUpload.setVisible(true);
+					lblFile.setVisible(false);
+					img.setVisible(false);
+					btnRemove.setVisible(false);
+				}
+				</attribute></button>
+			</row>
+			<row>
+				Assign To:
+				<combobox width="150px" id="developer" autodrop="true" model="@load(vm.developerModel)" constraint="no empty:Please Select Developer">
+					<template name="model">
+						<comboitem label="@load(each.name)" value="@load(each.name)"></comboitem>
+					</template>
+				</combobox>
+			</row>
+			<row>
+				<label></label>
+				<button label="Create Bug" height="30px"></button>
+			</row>
+		</rows>
+	</grid>
+</window>
+</div>
+</zk>

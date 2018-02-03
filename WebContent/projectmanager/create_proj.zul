@@ -1,0 +1,32 @@
+<?page title="New Project" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="pm_home.zul"/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<div id="form" align="center">
+<window width="300px" title="Create New Project" apply="ProjectManager.InsertData" viewModel="@id('vm') @init('ProjectManager.Project')">
+	<grid>
+		<rows>
+			<row>
+			Project Name:
+			<textbox id="name" constraint="no empty:Project Name cannot be empty"></textbox>
+			</row>
+			<row>
+			Start Date:
+			<datebox id="stdate" format="dd/MM/yyyy"/>
+			</row>
+			<row>
+			End Date:
+			<datebox id="edate" format="dd/MM/yyyy"/>
+			</row>
+			<row>
+			<label></label>
+			<button label="Create Project"></button>
+			</row>
+		</rows>
+	</grid>
+</window>
+</div>
+</zk>

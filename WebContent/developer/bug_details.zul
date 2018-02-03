@@ -1,0 +1,73 @@
+<?page title="Bug Details" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="dev_home.zul"></include>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<window apply="tester.BugDetails">
+<hlayout>
+<div width="70%">
+	<grid>
+		<rows>
+			<row>
+				Bug Id:
+				<label id="b_id"></label>
+			</row>
+			<row>
+				Bug Summary:
+				<label id="summary"></label>
+			</row>
+			<row>
+				Bug Description:
+				<label id="desc"></label>
+			</row>
+			<row>
+				File:
+				<image id="img"></image>
+			</row>
+			<row valign="bottom">
+				<textbox id="txtresolve" rows="3"></textbox>
+				<button label="Resolve"></button>
+			</row>
+		</rows>
+	</grid>
+</div>
+<vlayout>
+<div width="30%" height="100px">
+		<grid>
+			<rows>
+				<row>
+					Assigned To:
+				</row>
+				<row>
+					<label value=""></label>
+				</row>
+			</rows>
+		</grid>
+</div>
+<div width="30%">
+		<grid>
+			<rows>
+					<row>
+						Project Name:
+					</row>
+					<row>
+						<label id="pname"></label>
+					</row>
+					<row></row>
+					<row></row>
+					<row>
+						Project Manager:
+					</row>
+					<row>
+						<label value=""></label>
+					</row>
+			</rows>
+		</grid>
+</div>
+</vlayout>
+</hlayout>
+</window>
+</zk>

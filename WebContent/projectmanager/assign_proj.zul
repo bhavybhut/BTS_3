@@ -1,0 +1,48 @@
+<?page title="Assign Project" contentType="text/html;charset=UTF-8"?>
+<zk>
+<include src="pm_home.zul"/>
+<separator/>
+<separator/>
+<separator/>
+<separator/>
+<div align="center" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('ProjectManager.FilterViewModel')">
+<window title="Assign Project" width="400px" apply="ProjectManager.AssignProject">
+	<grid>
+		<rows>
+			<row>
+			Select Project:
+			<combobox id="proj" autodrop="true" model="@load(vm.projectModel)" constraint="no empty:Please Select Project">
+				<template name="model">
+					<comboitem label="@load(each.name)" value="@load(each.name)"></comboitem>
+				</template>
+			</combobox>
+			</row>
+			<row>
+			Select Developers:
+			<listbox model="@load(vm.developerModel)">
+				<template name="model" var="dev">
+				<listitem>
+					<listcell><checkbox label="@{ load(dev.name)}" checked="@{ bind(dev.checked)}" /></listcell>
+				</listitem>
+			</template>
+			</listbox>
+			</row>
+			<row>
+			Select Testers:
+			<listbox model="@load(vm.testerModel)" checkmark="false">
+				<template name="model">
+				<listitem>
+					<listcell><checkbox label="@load(each.name)"></checkbox></listcell>
+				</listitem>
+				</template>
+			</listbox>
+			</row>
+			<row>
+			<label></label>
+			<button label="Assign" onClick="@command('checkDev')"></button>
+			</row>
+		</rows>
+	</grid>
+</window>
+</div>
+</zk>
